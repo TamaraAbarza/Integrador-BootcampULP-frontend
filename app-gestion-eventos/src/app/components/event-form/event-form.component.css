@@ -1,0 +1,60 @@
+.bloque {
+  width: 100%;
+}
+
+mat-dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.fecha-hora {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  width: 100%;
+}
+
+.fecha,
+.hora {
+  flex: 1;
+}
+
+.fecha mat-form-field,
+.hora mat-form-field {
+  width: 100%;
+}
+
+textarea {
+  resize: none; 
+}
+
+:root {
+  --primary-color: #f2b2bb; /* Rosa suave */
+  --secondary-color: #e2b1b5; /* Rosa claro */
+  --accent-color: #d0a1a3; /* Rosa más intenso */
+  --gray-light: #f7f7f7; /* Gris muy claro */
+  --gray-dark: #555555; /* Gris oscuro */
+}
+
+/* Estilo para el título */
+.dialog-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #444;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-top: 10px;
+}
+
+/* Estilo para el párrafo */
+.dialog-description {
+  font-size: 16px;
+  color:  #555555;;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin-top: -10px;
+  margin-bottom: -7px;
+}

@@ -1,0 +1,16 @@
+.icon-style {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+mat-dialog-content {
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+}
+
+mat-dialog-actions button {
+  padding: 10px 20px;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}

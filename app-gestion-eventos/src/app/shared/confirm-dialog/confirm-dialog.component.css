@@ -1,0 +1,15 @@
+.icon-style {
+    font-size: 24px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+mat-dialog-actions button {
+    font-weight: bold;
+    padding: 10px 20px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+mat-dialog-actions button:hover {
+    transform: scale(1.05);
+}

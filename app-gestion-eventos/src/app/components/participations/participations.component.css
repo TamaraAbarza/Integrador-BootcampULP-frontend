@@ -1,0 +1,99 @@
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.participation-list {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.card-header-custom {
+    border-bottom: 1px solid #eee;
+    padding: 1rem;
+    text-align: center;
+}
+
+.custom-card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.custom-card-subtitle {
+    font-size: 1rem;
+    color: #666;
+}
+
+.card-footer {
+    margin-top: auto;
+    margin-bottom: 10px;
+}
+
+/*
+.cancelar-button {
+    font-size: 0.9rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
+    background-color: #ff4081;
+    color: white;
+}
+
+.cancelar-button:hover {
+    background-color: #e0356d;
+    color: white;
+}
+
+.cancelar-button[disabled] {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+    */
+button {
+    padding: 10px 20px;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+    margin-bottom: 0;
+    margin-right: 10px;
+   
+    margin-right: 10px;
+}
+
+button:hover {
+    transform: scale(1.03);
+}
+
+.cancelar-button{
+    background-color: #f44336;
+    color: white;
+}
+.detalles-button{
+    background-color: #ff4081;
+    color: white;
+}
+.no-events {
+    padding: 1.5rem;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+}
+
+.icon-large {
+    font-size: 64px;
+    color: #ccc;
+}
+
+mat-card-content {
+    margin-top: 20px;
+}

@@ -1,0 +1,23 @@
+<div class="dialog-container">
+    <div mat-dialog-title [ngStyle]="{color: '#444', padding: '15px', borderRadius: '5px 5px 0 0' }" class="titulo">
+      <mat-icon class="icon-style">event</mat-icon>
+      Detalle del Evento
+    </div>
+    <mat-dialog-content class="dialog-content" style="padding: 20px; font-size: 16px; line-height: 1.6;">
+      <p><strong>Nombre:</strong> {{ evento?.name }}</p>
+      <p><strong>Fecha:</strong> {{ evento?.date | date: 'fullDate' }} , {{ evento?.date | date: 'HH:mm a' }}</p>
+      <p><strong>Ubicación:</strong> {{ evento?.location }}</p>
+      <p><strong>Descripción:</strong> {{ evento?.description }}</p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end" style="padding: 10px;">
+      <button
+        mat-button
+        mat-dialog-close
+        class="close-button"
+        style="background-color: #f44336; color: white; border-radius: 5px; display: flex; align-items: center;"
+      >
+        <mat-icon>clear</mat-icon>
+        <span style="margin-left: 5px;">Cerrar</span>
+      </button>
+    </mat-dialog-actions>
+  </div>

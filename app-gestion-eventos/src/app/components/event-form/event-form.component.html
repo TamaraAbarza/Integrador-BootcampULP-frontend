@@ -1,0 +1,73 @@
+<h2 mat-dialog-title class="dialog-title">{{dialogTexts.titleText}}</h2>
+<p class="dialog-description">{{dialogTexts.descriptionText}}</p>
+
+<mat-dialog-content>
+ 
+  <form [formGroup]="eventoForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field class="bloque">
+      <mat-label>Nombre del evento</mat-label>
+      <input matInput formControlName="name">
+      <mat-error *ngIf="eventoForm.get('name')?.hasError('required')">
+        El nombre es requerido
+      </mat-error>
+      <mat-error *ngIf="eventoForm.get('name')?.hasError('minlength')">
+        El nombre debe tener al menos 3 caracteres
+      </mat-error>
+      <mat-error *ngIf="eventoForm.get('name')?.hasError('maxlength')">
+        El nombre no puede tener más de 50 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <div class="fecha-hora">
+      <mat-form-field class="fecha">
+        <mat-label>Selecciona la fecha</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="eventoForm.get('date')?.hasError('required')">
+          La fecha es requerida
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="hora">
+        <mat-label>Hora</mat-label>
+        <input matInput type="time" formControlName="time">
+        <mat-error *ngIf="eventoForm.get('time')?.hasError('required')">
+          La hora es requerida
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="bloque">
+      <mat-label>Ubicación</mat-label>
+      <input matInput formControlName="location">
+      <mat-error *ngIf="eventoForm.get('location')?.hasError('required')">
+        La ubicación es requerida
+      </mat-error>
+      <mat-error *ngIf="eventoForm.get('location')?.hasError('minlength')">
+        La ubicación debe tener al menos 5 caracteres
+      </mat-error>
+      <mat-error *ngIf="eventoForm.get('location')?.hasError('maxlength')">
+        La ubicación no puede tener más de 100 caracteres
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="bloque">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+      <mat-error *ngIf="eventoForm.get('description')?.hasError('required')">
+        La descripción es requerida
+      </mat-error>
+      <mat-error *ngIf="eventoForm.get('description')?.hasError('maxlength')">
+        La descripción no puede tener más de 200 caracteres
+      </mat-error>
+    </mat-form-field>
+
+  </form>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button color="primary" (click)="onNoClick()">Cancelar</button>
+  <button mat-button color="warn" (click)="onSubmit()" [disabled]="!eventoForm.valid">{{ dialogTexts.buttonText }}</button>
+</mat-dialog-actions>

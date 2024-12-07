@@ -1,0 +1,25 @@
+
+<div mat-dialog-title [ngStyle]="{ backgroundColor: '#ffc107', color: 'white', padding: '15px', borderRadius: '5px 5px 0 0' }">
+    <mat-icon class="icon-style">help_outline</mat-icon>
+    {{ data.title }}
+  </div>
+  <mat-dialog-content style="padding: 20px; font-size: 16px; text-align: center; color: #444;">
+    {{ data.message }}
+  </mat-dialog-content>
+  <mat-dialog-actions align="center" style="padding: 10px;">
+    <button
+      mat-button
+      [mat-dialog-close]="false"
+      style="background-color: #f44336; color: white; border-radius: 5px; margin-right: 10px;"
+    >
+      No
+    </button>
+    <button
+      mat-button
+      [mat-dialog-close]="true"
+      cdkFocusInitial
+      style="background-color: #4caf50; color: white; border-radius: 5px;"
+    >
+      Sí
+    </button>
+  </mat-dialog-actions>

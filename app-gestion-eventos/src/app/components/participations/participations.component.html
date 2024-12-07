@@ -1,0 +1,80 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4 page-title">Mis eventos</h2>
+
+    <!-- Filtro de participaciones -->
+    <div class="d-flex justify-content-center mb-4 w-100">
+        <mat-form-field appearance="outline" class="w-50">
+            <mat-label>Ver participaciones</mat-label>
+            <mat-select id="filtro" [(value)]="filtroSeleccionado" (selectionChange)="onFiltroChange($event)">
+                <mat-option value="proximas">Próximas participaciones</mat-option>
+                <mat-option value="historial">Historial de participaciones</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- Lista de participaciones -->
+    <div *ngIf="paginatedParticipation.length > 0; else noEventos" class="participation-list">
+        <div class="row g-4">
+            <div class="col-lg-6 col-md-6" *ngFor="let participacion of paginatedParticipation">
+                <mat-card class="custom-card h-100">
+                    <mat-card-header class="bg-light card-header-custom">
+                        <mat-card-title class="custom-card-title">
+                            {{ participacion.Event?.name }}
+                        </mat-card-title>
+                        <mat-card-subtitle class="custom-card-subtitle">
+                            {{ participacion.Event?.location }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><strong>Fecha:</strong> {{ participacion.Event?.date | date: 'dd/MM/yyyy' }}, {{ participacion.Event?.date | date: 'hh:mm a' }}</p>
+                        <p><strong>Estado:</strong>
+                            <span [class.text-success]="participacion.isConfirmed == 1"
+                                [class.text-warning]="participacion.isConfirmed != 1">
+                                {{ participacion.isConfirmed == 1 ? 'Confirmado' : 'Pendiente' }}
+                            </span>
+                        </p>
+                    </mat-card-content>
+                    <div class="card-footer">
+                        <mat-card-actions class="d-flex justify-content-center">
+                            
+                            <button mat-raised-button class="w-50 detalles-button"
+                                (click)="verEventoDetalle(participacion.Event.id)">
+                                <mat-icon class="me-2">visibility</mat-icon>
+                                Ver detalles
+                            </button>
+                            <!-- Mostrar solo el botón de cancelar si el filtro seleccionado es 'proximas' -->
+                            <button *ngIf="filtroSeleccionado === 'proximas'" mat-raised-button
+                                class="w-50 cancelar-button" (click)="borrarParticipacion(participacion.id)">
+                                <mat-icon class="me-2">close</mat-icon>
+                                Cancelar participación
+                            </button>
+                            
+                        </mat-card-actions>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje cuando no hay eventos -->
+    <ng-template #noEventos>
+        <div class="alert alert-info text-center no-events">
+            <mat-icon class="icon-large">event_busy</mat-icon>
+            <h3 class="text-secondary">No hay eventos disponibles</h3>
+            <p class="text-muted">
+                {{ filtroSeleccionado === 'proximas'
+                ? 'No tienes eventos próximos registrados.'
+                : 'No hay participaciones en el historial.' }}
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<!-- Paginador -->
+<mat-paginator [length]="participacionList.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]"
+    (page)="onPageChange($event)">
+</mat-paginator>
+
+<app-footer></app-footer>

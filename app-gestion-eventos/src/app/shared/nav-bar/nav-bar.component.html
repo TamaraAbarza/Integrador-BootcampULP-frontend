@@ -1,0 +1,52 @@
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-rose">
+  <div class="container-fluid" >
+    <a class="navbar-brand" [routerLink]="['/home']" style="margin-left: 30px;">Gestión de Eventos</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+      aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <!-- Dropdown Usuario -->
+        <li class="nav-item dropdown" style="margin-right: 20px; margin-left: 30px;">
+          <a class="nav-link dropdown-toggle" id="usuarioDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="bi bi-person-circle"></i> {{ username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="usuarioDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/perfil']">Mi perfil</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/participaciones']">Mis inscripciones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/certificados']">Mis certificados</a></li>
+          </ul>
+        </li>
+
+        <!-- Eventos -->
+        <li class="nav-item" style="margin-right: 20px;">
+          <a class="nav-link"  [routerLink]="['/home']">Eventos</a>
+        </li>
+
+        <!-- Dropdown Administrador -->
+        <li class="nav-item dropdown" *ngIf="_authService.isAdmin()">
+          <a class="nav-link dropdown-toggle" id="adminDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="bi bi-shield-lock"></i>Administrador
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="adminDropdown">
+            <li><a class="dropdown-item" [routerLink]="['/participaciones/admin']">Participaciones</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/usuarios/admin']">Usuarios</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- Cerrar Sesión -->
+      <button mat-flat-button  color="warn" class="custom-logout-button" (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+        Cerrar Sesión
+      </button>
+
+    </div>
+  </div>
+</nav>
+

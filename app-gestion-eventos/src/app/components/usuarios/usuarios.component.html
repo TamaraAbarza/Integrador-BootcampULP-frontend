@@ -1,0 +1,53 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container my-4">
+  <div class="row justify-content-center">
+    <!-- Lista de usuarios -->
+    <div class="col-md-8">
+      <div class="card users-card">
+        <h3 class="card-title text-center">Lista de Usuarios</h3>
+        <div *ngIf="paginatedUsers.length > 0; else noUsers">
+          <div *ngFor="let user of paginatedUsers" class="card user-card">
+            <div class="row align-items-center">
+              <!-- Información del usuario (columna 1) -->
+              <div class="col-md-8">
+                <p><strong>ID:</strong> {{ user.id }}</p>
+                <p><strong>Nombre:</strong> {{ user.username }}</p>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+              </div>
+
+              <!-- Select para cambiar rol (columna 2) -->
+              <div class="col-md-4">
+                <mat-form-field appearance="outline" style="width: 100%;" class="mb-0">
+                  <mat-label>Rol del usuario</mat-label>
+                  <mat-select
+                    [(value)]="user.role"
+                    (selectionChange)="cambiarRol(user.id || 0, $event.value)">
+                    <mat-option [value]="1">Organizador</mat-option>
+                    <mat-option [value]="0">Usuario</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <button mat-button class="ms-4" color="warn" (click)="deleteUser(user.id || 0)" style="margin-top: -20px; margin-bottom: 0px;">Eliminar usuario</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Sin usuarios -->
+      <ng-template #noUsers>
+        <div class="alert alert-info text-center no-users">
+          <p>No hay usuarios disponibles.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<mat-paginator [length]="userList.length"
+                [pageSize]="pageSize"
+                [pageSizeOptions]="[5, 10, 25, 100]"
+                (page)="onPageChange($event)"
+                aria-label="Select page">
+</mat-paginator>
+
+<app-footer></app-footer>

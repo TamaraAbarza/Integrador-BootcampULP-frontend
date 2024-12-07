@@ -1,0 +1,72 @@
+<div class="container my-4">
+  <div class="row">
+    <!-- filtrar -->
+    <div class="col-md-3">
+      <div class="card filters-card" *ngIf="_authService.isAdmin()">
+        <h5 class="card-title">Filtros</h5>
+        <p class="filter-label">Por tipo de eventos</p>
+
+        <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Filtrar por tipo de eventos"
+          (change)="onFiltroChange($event)">
+          <mat-chip-option value="todos" [selected]="selectedFilter === 'todos'">Todos los eventos</mat-chip-option>
+          <mat-chip-option value="proximos" [selected]="selectedFilter === 'proximos'">Eventos
+            próximos</mat-chip-option>
+        </mat-chip-listbox>
+
+        <!-- btn para crear evento -->
+        <button mat-raised-button (click)="openDialog(0)" color="primary" class="mt-3" *ngIf="_authService.isAdmin()">
+          <mat-icon>add</mat-icon> Crear Evento
+        </button>
+      </div>
+    </div>
+
+    <!-- Lista de eventos -->
+    <div [class.col-md-9]="_authService.isAdmin()" [class.col-md-12]="!_authService.isAdmin()" div [ngClass]="{'w-75': !_authService.isAdmin(), 'custom-margin': !_authService.isAdmin()}">
+      <div *ngIf="paginatedEvents.length > 0; else noEventos" class="card events-card" >
+        <h3 class="card-title" [class.mx-5]="!_authService.isAdmin()">{{ selectedFilter === 'todos' ? 'Todos los eventos' : 'Próximos eventos' }} </h3>
+        <ul class="list-group" [class.mx-5]="!_authService.isAdmin()">
+          <li *ngFor="let evento of paginatedEvents" class="list-group-item event-item" >
+            <div class="row" >
+              <!-- datos del evento -->
+              <div class="col-md-8 event-details" >
+                <p><strong>Evento:</strong> {{ evento.name }}</p>
+                <p><strong>Fecha:</strong> {{ evento?.date | date: 'fullDate' }} , {{ evento?.date | date: 'HH:mm a' }}</p>
+                <!-- btn usuarios -->
+                <div class="user-actions">
+                  <button mat-raised-button color="primary" (click)="verEventoDetalle(evento.id)">
+                    <mat-icon>visibility</mat-icon> Ver Detalle
+                  </button>
+                  <button mat-raised-button color="accent" (click)="participar(evento.id)">
+                    <mat-icon>group</mat-icon>Participar
+                  </button>
+                </div>
+              </div>
+
+              <!-- btn administrador -->
+              <div class="col-md-4 admin-actions" *ngIf="_authService.isAdmin()">
+                <button mat-button color="warn" (click)="openDialog(evento.id)">
+                  <mat-icon>create</mat-icon>Editar
+                </button>
+                <button mat-button color="warn" (click)="borrarEvento(evento.id)">
+                  <mat-icon>delete_forever</mat-icon>Borrar
+                </button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Si no hay eventos cargados -->
+      <ng-template #noEventos>
+        <div class="alert alert-info text-center no-events">
+          <p *ngIf="selectedFilter === 'todos'">No hay eventos disponibles.</p>
+          <p *ngIf="selectedFilter === 'proximos'">No hay eventos próximos.</p>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<mat-paginator [length]="listEvents.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25]"
+  (page)="onPageChange($event)">
+</mat-paginator>

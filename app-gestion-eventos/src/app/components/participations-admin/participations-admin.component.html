@@ -1,0 +1,92 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container my-4">
+    <div class="row">
+        <!--filtros -->
+        <div class="col-md-3">
+            <div class="card filters-card">
+                <h5 class="card-title">Filtros</h5>
+
+                <p class="filter-label">Por confirmación</p>
+                <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Filtrar por confirmación"
+                    [(ngModel)]="filtroConfirmacion" (ngModelChange)="aplicarFiltro()">
+                    <mat-chip-option value="todos" selected>Todos</mat-chip-option>
+                    <mat-chip-option value="confirmadas">Confirmadas</mat-chip-option>
+                    <mat-chip-option value="pendientes">Pendientes</mat-chip-option>
+                </mat-chip-listbox>
+
+                <hr>
+
+                <p class="filter-label">Por fecha</p>
+                <mat-chip-listbox class="mat-mdc-chip-set-stacked" aria-label="Filtrar por fecha"
+                    [(ngModel)]="filtroFecha" (ngModelChange)="aplicarFiltro()">
+                    <mat-chip-option value="todas" selected>Todas</mat-chip-option>
+                    <mat-chip-option value="proximas">Próximas</mat-chip-option>
+                    <mat-chip-option value="pasadas">Pasadas</mat-chip-option>
+                </mat-chip-listbox>
+
+                <hr />
+
+                <!-- filtro por evento -->
+                <p class="filter-label">Por evento</p>
+                <mat-form-field appearance="outline">
+                    <mat-label>Selecciona el evento</mat-label>
+                    <mat-select [(ngModel)]="filtroEvento" (ngModelChange)="aplicarFiltro()"
+                        aria-label="Filtrar por evento">
+                        <mat-option value="todos" selected>Todos los eventos</mat-option>
+                        <mat-option *ngFor="let evento of eventList" [value]="evento.id">
+                            {{ evento.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+            </div>
+        </div>
+
+        <!-- Lista de inscripciones -->
+        <div class="col-md-9">
+            <div *ngIf="filteredList.length > 0; else noParticipacion" class="card participations-card">
+                <h3 class="card-title">Lista de Inscripciones</h3>
+                <ul class="list-group">
+
+                    <li *ngFor="let participacion of paginatedList" class="list-group-item participation-item">
+                        <div class="row">
+                            <!-- datos del evento -->
+                            <div class="col-md-6 event-column">
+                                <p><strong>Evento:</strong> {{ participacion.Event?.name }}</p>
+                                <p><strong>Ubicación:</strong> {{ participacion.Event?.location }}</p>
+                                <p><strong>Fecha:</strong> {{ participacion.Event?.date | date: 'dd/MM/yyyy' }}</p>
+                            </div>
+                            <!-- datos del usuario -->
+                            <div class="col-md-6 user-column">
+                                <p><strong>Nombre:</strong> {{ participacion.User?.username }}</p>
+                                <p><strong>Email:</strong> {{ participacion.User?.email }}</p>
+                                <p>
+                                    <strong style="margin-right: 7px;">Confirmación:</strong>
+                                    <mat-slide-toggle [(ngModel)]="participacion.isConfirmed"
+                                        (change)="confirmarParticipacion(participacion.id, participacion.isConfirmed ? 1 : 0)"
+                                        *ngIf="_authService.isAdmin()" labelPosition="before">
+                                        {{ participacion.isConfirmed ? 'Confirmado' : 'Pendiente' }}
+                                    </mat-slide-toggle>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <ng-template #noParticipacion>
+                <div class="alert alert-info text-center no-participations">
+                    <p>No hay participaciones disponibles.</p>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+<!-- Paginador -->
+<mat-paginator [length]="filteredList.length" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]"
+    (page)="onPageChange($event)" aria-label="Seleccionar página">
+</mat-paginator>
+
+<app-footer></app-footer>

@@ -1,0 +1,55 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="container my-4">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold titulo">Certificados de Eventos</h1>
+        <p class="text-muted">Descarga tus certificados de participación en eventos asistidos</p>
+    </div>
+
+    <!-- Lista de certificados -->
+    <div *ngIf="certificadosList.length > 0; else noCertificados" class="certificates-card">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6" *ngFor="let certificado of certificadosList">
+                <mat-card class="custom-card h-100">
+                    <mat-card-header class="bg-light card-header-custom">
+                        <mat-card-title class="custom-card-title">
+                            {{ certificado.Event?.name }}
+                        </mat-card-title>
+                        <mat-card-subtitle class="custom-card-subtitle">
+                            {{ certificado.Event?.location }}
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <p><strong>Fecha:</strong> {{ certificado.Event?.date | date: 'dd/MM/yyyy' }}</p>
+                    </mat-card-content>
+                    <!-- Asegurar que los botones están en la parte inferior -->
+                    <div class="card-footer">
+                        <mat-card-actions class="text-center">
+                            <button mat-raised-button color="primary" class="w-100 download-button"
+                                (click)="generarCertificado(certificado.id)">
+                                <mat-icon class="me-2">download</mat-icon>
+                                Descargar certificado
+                            </button>
+                        </mat-card-actions>
+                    </div>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mensaje si no hay certificados -->
+    <ng-template #noCertificados>
+        <div class="alert alert-info text-center no-certificates">
+            <mat-icon class="icon-large">event_busy</mat-icon>
+            <h3 class="text-secondary">No hay certificados disponibles</h3>
+            <p class="text-muted">
+                Todavía no has asistido a ningún evento o tus certificados no están disponibles aún.
+            </p>
+        </div>
+    </ng-template>
+
+</div>
+<mat-paginator [length]="certificadosList.length" [pageSize]="pageSize" [pageSizeOptions]="[6, 12, 24]"
+    (page)="onPageChange($event)">
+</mat-paginator>
+<app-footer></app-footer>

@@ -1,0 +1,36 @@
+<h2 mat-dialog-title class="dialog-title">Restablecer contraseña</h2>
+<p class="dialog-description">Por favor, ingrese su correo electrónico para recibir un enlace de restablecimiento.</p>
+
+<mat-dialog-content>
+  <form [formGroup]="resetForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="bloque">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" formControlName="email" />
+      <mat-error *ngIf="resetForm.get('email')?.hasError('required')">
+        El correo electrónico es obligatorio.
+      </mat-error>
+      <mat-error *ngIf="resetForm.get('email')?.hasError('email')">
+        Por favor, ingrese un correo electrónico válido.
+      </mat-error>
+    </mat-form-field>
+
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    
+    <!-- Mostrar el mensaje "¿Aún no recibiste el mail?" y el contador -->
+    <div *ngIf="isCountdownActive" class="countdown-container">
+      <p class="countdown-question">¿Aún no recibiste el mail?</p>
+      <p class="countdown">Por favor, espera {{ countdown }} segundos antes de volver a enviar el correo.</p>
+    </div>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <!-- Botón de Cancelar que cierra el diálogo -->
+  <button mat-button type="button" (click)="onCancel()">Cancelar</button>
+  
+  <!-- Botón de Enviar deshabilitado cuando el contador está activo -->
+  <button mat-button (click)="onSubmit()" [disabled]="!resetForm.valid || isCountdownActive">
+    Enviar
+  </button>
+</mat-dialog-actions>

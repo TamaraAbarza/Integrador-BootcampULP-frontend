@@ -1,0 +1,87 @@
+.mat-mdc-chip-set {
+    max-width: 200px;
+}
+
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.filters-card {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.filters-card .card-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.filters-card .filter-label {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.participations-card {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.participations-card .card-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.participation-item {
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-column,
+.user-column {
+    padding: 0.5rem 1rem;
+}
+
+.event-column {
+    border-right: 1px solid #ddd;
+}
+
+.user-column {
+    padding-left: 1.5rem;
+}
+
+.participation-item p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.participation-item p strong {
+    font-weight: 600;
+    color: #333;
+}
+
+.no-participations {
+    padding: 1.5rem;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+}

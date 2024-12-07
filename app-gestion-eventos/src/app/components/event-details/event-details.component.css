@@ -1,0 +1,29 @@
+.dialog-container {
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+.dialog-content p {
+  margin: 5px 0;
+}
+
+.close-button {
+  font-weight: bold;
+  padding: 10px 20px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.close-button:hover {
+  transform: scale(1.05);
+  background-color: #d32f2f;
+}
+
+.icon-style {
+  font-size: 24px;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+.titulo{
+  background-color: #f8d7e8;
+  font-weight: 500;
+}

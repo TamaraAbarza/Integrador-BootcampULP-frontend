@@ -1,0 +1,98 @@
+
+.container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+}
+
+.filters-card {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.filters-card .card-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #444;
+}
+
+.filters-card .filter-label {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    color: #555;
+}
+
+.filters-card button {
+    width: 100%;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.events-card {
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.events-card .card-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.event-item {
+    margin-bottom: 1rem;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.event-details p {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.user-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.user-actions button {
+    flex: 1;
+}
+
+.admin-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.admin-actions button {
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    width: 100%;
+}
+
+.no-events {
+    padding: 1.5rem;
+    font-size: 1rem;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    color: #555;
+}
+
+.custom-margin {
+    margin-left: 135px;
+  }

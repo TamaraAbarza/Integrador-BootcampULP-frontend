@@ -1,0 +1,114 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-5 mb-3">
+  <div class="profile-container mt-4 mb-5" id="miPerfil">
+    <!--
+    <h2 class="text-center mb-4">Mi Perfil</h2>
+     -->
+    <mat-tab-group mat-stretch-tabs>
+      <!-- Tab 1: Datos personales -->
+      <mat-tab label="Datos Personales">
+        <div class="profile-card">
+          <div class="profile-header">
+            <div class="avatar-container">
+              <mat-icon class="avatar-icon">person</mat-icon>
+            </div>
+            <h3>{{ user?.username || 'Usuario' }}</h3>
+            <p class="role">{{ user?.role === 1 ? 'Organizador' : user?.role === 0 ? 'Usuario' : 'Sin Rol' }}</p>
+          </div>
+          <form [formGroup]="profileForm" class="profile-form">
+            <mat-form-field appearance="outline">
+              <mat-label>Nombre de Usuario</mat-label>
+              <input matInput formControlName="username" />
+              <mat-error *ngIf="profileForm.get('username')?.hasError('required')">Campo obligatorio</mat-error>
+              <mat-error *ngIf="profileForm.get('username')?.hasError('minlength')">Debe tener al menos 3 caracteres</mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput formControlName="email" />
+              <mat-error *ngIf="profileForm.get('email')?.hasError('required')">Campo obligatorio</mat-error>
+              <mat-error *ngIf="profileForm.get('email')?.hasError('email')">Email inválido</mat-error>
+            </mat-form-field>
+    
+            <button mat-raised-button color="primary" class="save-button" [disabled]="!profileForm.valid" (click)="saveProfile()">
+              Guardar Cambios
+            </button>
+          </form>
+        </div>
+      </mat-tab>
+  
+      <!-- Tab 2: Cambiar contraseña -->
+      <mat-tab label="Cambiar Contraseña">
+        <div class="password-card">
+          <form [formGroup]="passwordForm">
+            <p class="mt-4 text-center">Modifica la contraseña</p>
+
+            <!-- Contraseña Actual -->
+            <mat-form-field appearance="outline" class="mt-3">
+              <mat-label>Contraseña Actual</mat-label>
+              <input
+                matInput
+                [type]="hideCurrentPassword ? 'password' : 'text'"
+                formControlName="currentPassword"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="toggleCurrentPassword()"
+                [attr.aria-label]="'Mostrar u ocultar contraseña actual'"
+              >
+                <mat-icon>{{ hideCurrentPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.get('currentPassword')?.hasError('required')">Campo obligatorio</mat-error>
+            </mat-form-field>
+
+            <!-- Nueva Contraseña -->
+            <mat-form-field appearance="outline">
+              <mat-label>Nueva Contraseña</mat-label>
+              <input
+                matInput
+                [type]="hideNewPassword ? 'password' : 'text'"
+                formControlName="newPassword"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="toggleNewPassword()"
+                [attr.aria-label]="'Mostrar u ocultar nueva contraseña'"
+              >
+                <mat-icon>{{ hideNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('required')">Campo obligatorio</mat-error>
+              <mat-error *ngIf="passwordForm.get('newPassword')?.hasError('minlength')">Debe tener al menos 6 caracteres</mat-error>
+            </mat-form-field>
+
+            <!-- Confirmar Nueva Contraseña -->
+            <mat-form-field appearance="outline">
+              <mat-label>Confirmar Nueva Contraseña</mat-label>
+              <input
+                matInput
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                formControlName="confirmPassword"
+              />
+              <button
+                mat-icon-button
+                matSuffix
+                (click)="toggleConfirmPassword()"
+                [attr.aria-label]="'Mostrar u ocultar confirmación de contraseña'"
+              >
+                <mat-icon>{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+              </button>
+              <mat-error *ngIf="passwordForm.get('confirmPassword')?.hasError('required')">Campo obligatorio</mat-error>
+              <mat-error *ngIf="passwordForm.get('confirmPassword')?.hasError('mismatch')">Las contraseñas no coinciden</mat-error>
+            </mat-form-field>
+
+            <button mat-raised-button color="accent" class="save-button mt-2 mb-1" [disabled]="!passwordForm.valid" (click)="updatePassword()">
+              Actualizar Contraseña
+            </button>
+          </form>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
+<app-footer></app-footer>

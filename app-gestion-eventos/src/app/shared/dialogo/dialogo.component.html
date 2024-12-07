@@ -1,0 +1,11 @@
+<div mat-dialog-title [ngStyle]="{ backgroundColor: getBackgroundColor(), color: 'white', padding: '15px', borderRadius: '5px 5px 0 0' }">
+  <i [ngClass]="getIcon()" class="icon-style"></i> {{ getTitle() }}
+</div>
+<mat-dialog-content style="padding: 20px; font-size: 16px; color: #444;">
+  <p>{{ data.message }}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end" style="padding: 10px;">
+  <button mat-button mat-dialog-close color="warn" style=" border-radius: 5px;">
+    Salir
+  </button>
+</mat-dialog-actions>

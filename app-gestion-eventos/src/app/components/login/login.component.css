@@ -1,0 +1,81 @@
+/* Fondo de las páginas */
+.login-page, .register-page {
+    height: 100vh;
+    background: linear-gradient(to right, #fff5f8, #ffeef4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  /* Contenedores principales */
+  .login-container, .register-container {
+    max-width: 400px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Títulos principales */
+  .welcome-title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #c2185b; /* Rose */
+    margin-bottom: 5px;
+  }
+  
+  .welcome-subtitle {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #d32f2f; /* Red */
+  }
+  
+  /* Íconos decorativos */
+  .welcome-icon {
+    font-size: 3rem;
+    color: #d32f2f;
+    margin-bottom: 10px;
+  }
+  
+  /* Formularios */
+  mat-form-field {
+    margin-bottom: 8px; /* Menor espacio entre campos */
+  }
+  
+  button[mat-raised-button] {
+    background-color: #d32f2f !important;
+    color: white !important;
+    font-size: 1rem;
+    border-radius: 0 !important; /* Bordes rectos */
+    padding: 10px 0;
+    margin-top: 5px; /* Más cerca del campo anterior */
+  }
+  
+  button[mat-raised-button]:hover {
+    background-color: #b71c1c !important;
+  }
+  
+  a.text-rose {
+    color: #c2185b;
+    text-decoration: none;
+  }
+  
+  a.text-rose:hover {
+    text-decoration: underline;
+  }
+  
+  /* fondo */
+  /*
+  
+   background-color: hsla(210.00000000000043, 25%, 98%, 1);
+    background-image: radial-gradient(circle at -54% 222%, hsla(219.99999999999994, 0%, 100%, 1) 1%, transparent 81%), radial-gradient(circle at -54% 222%, hsla(219.99999999999994, 0%, 100%, 1) 1%, transparent 81%), radial-gradient(circle at 26% 169%, hsla(219.9999999999999, 67%, 78%, 1) 1%, transparent 59%), radial-gradient(circle at 148% 223%, hsla(23.513513513513523, 90%, 83%, 1) 5%, transparent 65%);
+    background-blend-mode: normal, normal, normal, normal;
+  
+  
+    background-color: hsla(333, 0%, 100%, 1);
+      background-image: radial-gradient(circle at 0% 0%, hsla(64, 82%, 77%, 0.35) 3.1210986267166043%, transparent 40%), radial-gradient(circle at 20% 0%, hsla(5, 77%, 74%, 0.35) 3.1210986267166043%, transparent 40%), radial-gradient(circle at 40% 0%, hsla(315, 77%, 74%, 0.35) 3.1210986267166043%, transparent 40%), radial-gradient(circle at 60% 0%, hsla(256, 77%, 74%, 0.35) 3.1210986267166043%, transparent 40%), radial-gradient(circle at 80% 0%, hsla(191, 77%, 74%, 0.35) 3.1210986267166043%, transparent 40%), radial-gradient(circle at 100% 0%, hsla(152, 77%, 74%, 0.35) 3%, transparent 40%);
+      background-blend-mode: normal, normal, normal, normal, normal, normal;
+  */
